@@ -1,0 +1,885 @@
+---
+info:
+  _postman_id: 90f09782-6c59-4d5b-bb0c-4bd157a2564e
+  name: Synapsis Backend
+  description: API documentation for Synapsis Backend
+  schema: https://schema.getpostman.com/json/collection/v2.1.0/collection.json
+  _exporter_id: '20236546'
+item:
+- name: api
+  item:
+  - name: register
+    item:
+    - name: Register a new user
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk3NjE5MjAsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIyIn0.zcuF13bPRch8tVP2uvxjzaapXCxnA2D9e9ZwJVRjMNY
+            type: string
+        method: POST
+        header:
+        - key: Content-Type
+          value: application/json
+        body:
+          mode: raw
+          raw: |-
+            {
+              "username": "adityaxx21",
+              "password": "123123123",
+              "role": "user"
+            }
+          options:
+            raw:
+              headerFamily: json
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/register"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - register
+        description: "This endpoint allows you to register a new user by sending a
+          POST request to {{baseUrl}}/api/register. The request should include a JSON
+          payload in the raw request body with the keys \"username\", \"password\",
+          and \"role\".\n\n### Request Body\n\n- `username` (string, required): The
+          username of the new user.\n- `password` (string, required): The password
+          for the new user.\n- `role` (string, required): The role of the new user.\n
+          \   \n\n### Response\n\nUpon successful registration, the endpoint returns
+          a 201 status code with a JSON response containing the details of the newly
+          registered user, including their ID, username, password, role, creation
+          timestamp, and update timestamp. The \"DeletedAt\" field will be null, indicating
+          that the user has not been deleted.\n\n### Example Response\n\n``` json\n{\n
+          \   \"ID\": 123,\n    \"Username\": \"example_user\",\n    \"Password\":
+          \"********\",\n    \"Role\": \"user\",\n    \"CreatedAt\": \"2022-01-01T12:00:00Z\",\n
+          \   \"UpdatedAt\": \"2022-01-01T12:00:00Z\",\n    \"DeletedAt\": null\n}\n\n
+          ```"
+      response:
+      - name: User created
+        originalRequest:
+          method: POST
+          header:
+          - key: Content-Type
+            value: application/json
+          body:
+            mode: raw
+            raw: |-
+              {
+                "username": "<string>",
+                "password": "<string>",
+                "role": "<string>"
+              }
+            options:
+              raw:
+                headerFamily: json
+                language: json
+          url:
+            raw: "{{baseUrl}}/api/register"
+            host:
+            - "{{baseUrl}}"
+            path:
+            - api
+            - register
+        status: Created
+        code: 201
+        _postman_previewlanguage: text
+        header: []
+        cookie: []
+        body: ''
+      - name: Bad request
+        originalRequest:
+          method: POST
+          header:
+          - key: Content-Type
+            value: application/json
+          body:
+            mode: raw
+            raw: |-
+              {
+                "username": "<string>",
+                "password": "<string>",
+                "role": "<string>"
+              }
+            options:
+              raw:
+                headerFamily: json
+                language: json
+          url:
+            raw: "{{baseUrl}}/api/register"
+            host:
+            - "{{baseUrl}}"
+            path:
+            - api
+            - register
+        status: Bad Request
+        code: 400
+        _postman_previewlanguage: text
+        header: []
+        cookie: []
+        body: ''
+  - name: login
+    item:
+    - name: Login and get a JWT token
+      request:
+        method: POST
+        header:
+        - key: Content-Type
+          value: application/json
+        body:
+          mode: raw
+          raw: |-
+            {
+              "username": "adityaxx21",
+              "password": "123123123"
+            }
+          options:
+            raw:
+              headerFamily: json
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/login"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - login
+        description: "### API Request Description\n\nThis endpoint allows users to
+          log in by sending a POST request to the specified URL. The request should
+          include a JSON payload in the raw request body type with the \"username\"
+          and \"password\" fields.\n\n#### Request Body\n\n- `username` (string, required):
+          The username of the user.\n- `password` (string, required): The password
+          of the user.\n    \n\n### Response\n\nThe response to this request will
+          have a status code of 200 and a content type of \"application/json\". The
+          response body will contain a JSON object with a \"token\" field.\n\n###
+          Example Response\n\n``` json\n{\n    \"token\": \"\"\n}\n\n ```\n\n### JSON
+          Schema for Response\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\":
+          {\n        \"token\": {\n            \"type\": \"string\"\n        }\n    }\n}\n\n
+          ```"
+      response:
+      - name: Successful login
+        originalRequest:
+          method: POST
+          header:
+          - key: Content-Type
+            value: application/json
+          body:
+            mode: raw
+            raw: |-
+              {
+                "username": "<string>",
+                "password": "<string>"
+              }
+            options:
+              raw:
+                headerFamily: json
+                language: json
+          url:
+            raw: "{{baseUrl}}/api/login"
+            host:
+            - "{{baseUrl}}"
+            path:
+            - api
+            - login
+        status: OK
+        code: 200
+        _postman_previewlanguage: text
+        header: []
+        cookie: []
+        body: ''
+      - name: Unauthorized
+        originalRequest:
+          method: POST
+          header:
+          - key: Content-Type
+            value: application/json
+          body:
+            mode: raw
+            raw: |-
+              {
+                "username": "<string>",
+                "password": "<string>"
+              }
+            options:
+              raw:
+                headerFamily: json
+                language: json
+          url:
+            raw: "{{baseUrl}}/api/login"
+            host:
+            - "{{baseUrl}}"
+            path:
+            - api
+            - login
+        status: Unauthorized
+        code: 401
+        _postman_previewlanguage: text
+        header: []
+        cookie: []
+        body: ''
+  - name: check
+    item:
+    - name: check
+      request:
+        auth:
+          type: noauth
+        method: GET
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/check"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - check
+      response: []
+  - name: item
+    item:
+    - name: Create item (only for admin role)
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Mzk1MzMsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4xIn0.NR9V8VK_St-kf_Xd4h5GeSj6Ed8TND-c-kRofODximU
+            type: string
+        method: POST
+        header: []
+        body:
+          mode: raw
+          raw: "{\n    \"Title\":\"Alat Makan 2\",\n    \"Description\": \"Piring
+            bisa\",\n    \"category\": \"alat makan\",\n    \"Price\": 2000, \n\t\"Size\":
+            [1.2,2,3],\n\t\"Weight\": 12.5,\n    \"Stock\": 20\n}"
+          options:
+            raw:
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/items"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - items
+        description: "### API Request Description\n\nThis endpoint allows you to create
+          a new item by sending a POST request to the specified URL. The request should
+          include the item's title, description, category, price, size, weight, and
+          stock in the request body.\n\n#### Request Body\n\n- `Title` (string): The
+          title of the item.\n- `Description` (string): The description of the item.\n-
+          `category` (string): The category of the item.\n- `Price` (number): The
+          price of the item.\n- `Size` (array of numbers): The size of the item.\n-
+          `Weight` (number): The weight of the item.\n- `Stock` (number): The stock
+          quantity of the item.\n    \n\n### API Response\n\nThe response to the request
+          will have a status code of 201 and a content type of `application/json`.
+          The response body will contain a JSON object with the following schema:\n\n```
+          json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"data\": {\n
+          \     \"type\": \"object\",\n      \"properties\": {\n        \"ID\": {\n
+          \         \"type\": \"number\"\n        },\n        \"Title\": {\n          \"type\":
+          \"string\"\n        },\n        \"Description\": {\n          \"type\":
+          \"string\"\n        },\n        \"Category\": {\n          \"type\": \"string\"\n
+          \       },\n        \"Price\": {\n          \"type\": \"number\"\n        },\n
+          \       \"Size\": {\n          \"type\": \"array\",\n          \"items\":
+          {\n            \"type\": \"number\"\n          }\n        },\n        \"Weight\":
+          {\n          \"type\": \"number\"\n        },\n        \"Stock\": {\n          \"type\":
+          \"number\"\n        },\n        \"CreatedAt\": {\n          \"type\": \"string\"\n
+          \       },\n        \"UpdatedAt\": {\n          \"type\": \"string\"\n        },\n
+          \       \"DeletedAt\": {\n          \"type\": [\"string\", \"null\"]\n        }\n
+          \     }\n    }\n  }\n}\n\n ```"
+      response: []
+    - name: Update Item (only for admin role)
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Mzk1MzMsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4xIn0.NR9V8VK_St-kf_Xd4h5GeSj6Ed8TND-c-kRofODximU
+            type: string
+        method: PUT
+        header: []
+        body:
+          mode: raw
+          raw: |-
+            {
+                "Title": "Alat Minum !",
+                "Description": "Minum Alat",
+                "Price": 20000,
+                "Weight": 12.1,
+                "Stock": 100,
+                "Size": [
+                    1.2,
+                    2,
+                    3
+                ]
+            }
+          options:
+            raw:
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/items/1"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - items
+          - '1'
+        description: |-
+          ### Update Item Details
+
+          This API endpoint is used to update the details of a specific item.
+
+          #### Request
+
+          - Method: PUT
+          - Endpoint: `{{baseUrl}}/api/items/:itemId`
+          - Body:
+              - `Title` (string, required): The updated title of the item.
+
+          #### Response
+
+          The response is in JSON format and has the following schema:
+
+          ``` json
+          {
+            "type": "object",
+            "properties": {
+              "ID": {
+                "type": "integer"
+              },
+              "Title": {
+                "type": "string"
+              },
+              "Description": {
+                "type": "string"
+              },
+              "Price": {
+                "type": "number"
+              },
+              "Size": {
+                "type": "array",
+                "items": {
+                  "type": "float"
+                }
+              },
+              "Weight": {
+                "type": "number"
+              },
+              "Stock": {
+                "type": "integer"
+              },
+              "CreatedAt": {
+                "type": "string"
+              },
+              "UpdatedAt": {
+                "type": "string"
+              },
+              "DeletedAt": {
+                "type": ["string", "null"]
+              }
+            }
+          }
+          - Status: 201 Created
+          - Content-Type: application/json
+
+           ```
+      response: []
+    - name: Delete Item (only for admin role)
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Mzk1MzMsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4xIn0.NR9V8VK_St-kf_Xd4h5GeSj6Ed8TND-c-kRofODximU
+            type: string
+        method: DELETE
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/items/1"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - items
+          - '1'
+        description: "### API Request Description\n\nThis endpoint allows the client
+          to delete a specific item by providing the item ID in the URL path.\n\n####
+          Url Path\n\n- Endpoint: `http://127.0.0.1:3000/api/items/:itemId`\n    \n\n####
+          Response Body\n\nThe response for this request does not include a body.\n\n####
+          Response JSON Schema\n\n``` json\n{}\n\n ```"
+      response: []
+    - name: Detail item
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Mzk1MzMsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4xIn0.NR9V8VK_St-kf_Xd4h5GeSj6Ed8TND-c-kRofODximU
+            type: string
+        method: GET
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/items/2"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - items
+          - '2'
+        description: "This endpoint makes an HTTP GET request to retrieve information
+          about a specific item with the ID of 2. The response will be in JSON format
+          and will include details such as the item's title, description, category,
+          price, size, weight, stock, creation and update timestamps, and deletion
+          timestamp if applicable.\n\n### Request Body\n\nThis request does not require
+          a request body.\n\n### Response Body\n\n- `ID` (number): The unique identifier
+          of the item.\n- `Title` (string): The title of the item.\n- `Description`
+          (string): The description of the item.\n- `Category` (string): The category
+          of the item.\n- `Price` (number): The price of the item.\n- `Size` (array
+          of numbers): The size of the item.\n- `Weight` (number): The weight of the
+          item.\n- `Stock` (number): The available stock of the item.\n- `CreatedAt`
+          (string): The timestamp when the item was created.\n- `UpdatedAt` (string):
+          The timestamp when the item was last updated.\n- `DeletedAt` (string or
+          null): The timestamp when the item was deleted, or null if it has not been
+          deleted.\n    \n\nThe response will have a status code of 201 upon successful
+          retrieval of the item information."
+      response: []
+    - name: List Items
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Mzk1MzMsInJvbGUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4xIn0.NR9V8VK_St-kf_Xd4h5GeSj6Ed8TND-c-kRofODximU
+            type: string
+        method: GET
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/items"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - items
+          query:
+          - key: ''
+            value: 
+            disabled: true
+        description: |-
+          ### GET /api/items
+
+          This endpoint retrieves a list of items with the specified limit and page parameters.
+
+          #### Request
+
+          - Method: GET
+          - Base URL: {{baseUrl}}
+          - Path: /api/items
+          - Query Parameters:
+              - limit (integer, required): The number of items to retrieve per page.
+              - page (integer, required): The page number for paginated results.
+
+          #### Response
+
+          The response is in JSON format and follows the schema below:
+
+          ``` json
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ID": { "type": "integer" },
+                    "Title": { "type": "string" },
+                    "Description": { "type": "string" },
+                    "Category": { "type": "string" },
+                    "Price": { "type": "number" },
+                    "Size": {
+                      "type": "array",
+                      "items": { "type": "number" }
+                    },
+                    "Weight": { "type": "number" },
+                    "Stock": { "type": "integer" },
+                    "Transactions": { "type": ["array", "null"] },
+                    "CreatedAt": { "type": "string" },
+                    "UpdatedAt": { "type": "string" },
+                    "DeletedAt": { "type": ["string", "null"] }
+                  },
+                  "required": ["ID", "Title", "Description", "Category", "Price", "Size", "Weight", "Stock", "Transactions", "CreatedAt", "UpdatedAt", "DeletedAt"]
+                }
+              },
+              "category": { "type": "string" },
+              "limit": { "type": "integer" },
+              "page": { "type": "integer" }
+            },
+            "required": ["data", "limit", "page"]
+          }
+
+           ```
+      response: []
+  - name: cart
+    item:
+    - name: Store cart
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: POST
+        header: []
+        body:
+          mode: raw
+          raw: |-
+            {
+                "ItemID":2,
+                "Total":4
+            }
+          options:
+            raw:
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/carts"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - carts
+        description: "This endpoint allows you to create a new cart by sending an
+          HTTP POST request to {{baseUrl}}/api/carts. The request should include a
+          JSON payload in the raw request body type, with the \"ItemID\" and \"Total\"
+          parameters.\n\n### Request Body\n\n- `ItemID` (number): The ID of the item
+          to be added to the cart.\n- `Total` (number): The total amount for the cart.\n
+          \   \n\n### Response\n\nUpon a successful creation, the endpoint will return
+          a status code of 201 and a JSON response with the following fields:\n\n-
+          `UserID` (number): The ID of the user associated with the cart.\n- `ItemID`
+          (number): The ID of the item in the cart.\n- `Total` (number): The total
+          amount in the cart.\n- `CreatedAt` (string): The timestamp indicating when
+          the cart was created.\n- `UpdatedAt` (string): The timestamp indicating
+          when the cart was last updated."
+      response: []
+    - name: Get Cart
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: GET
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/carts"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - carts
+        description: |-
+          ### API Request Description
+
+          This endpoint makes an HTTP GET request to retrieve information about carts.
+
+          ### Request Body
+
+          This request does not require a request body.
+
+          ### Response Body
+
+          The response returns a JSON object with the following schema:
+
+          ``` json
+          {
+              "data": [
+                  {
+                      "ID": "number",
+                      "Title": "string",
+                      "Description": "string",
+                      "Category": "string",
+                      "Price": "number",
+                      "Size": ["number"],
+                      "Weight": "number",
+                      "Stock": "number",
+                      "UserID": "number",
+                      "ItemID": "number",
+                      "Total": "number"
+                  }
+              ],
+              "limit": "number",
+              "page": "number"
+          }
+
+           ```
+      response: []
+    - name: Delete Cart
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: DELETE
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/carts/1"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - carts
+          - '1'
+        description: "### Delete Cart\n\nThis endpoint is used to delete a specific
+          cart by providing the cart ID in the URL.\n\n#### Url Path\n\n- Endpoint:
+          `http://127.0.0.1:3000/api/carts/:itemId`\n    \n\n#### Response\n\n- Status:
+          204\n- Content-Type: text/xml\n- The response body is empty (null)."
+      response: []
+    - name: Update Cart
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: PUT
+        header: []
+        body:
+          mode: raw
+          raw: |-
+            {
+                "Total": 20
+            }
+          options:
+            raw:
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/carts/3"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - carts
+          - '3'
+        description: "# Update Cart\n\nThis endpoint is used to update the cart with
+          the specified ID.\n\n## Request\n\n### Request URL\n\n- `PUT /api/carts/3`\n
+          \   \n\n### Request Body\n\n- Type: JSON\n    - `Total`: The total value
+          for the cart.\n\n## Response\n\nThe response returns a JSON object with
+          the following properties:\n\n- `data` (object):\n    - `ID` (number): The
+          ID of the cart.\n    - `Title` (string): The title of the cart item.\n    -
+          `Description` (string): The description of the cart item.\n    - `Category`
+          (string): The category of the cart item.\n    - `Price` (number): The price
+          of the cart item.\n    - `Size` (array): The size of the cart item.\n    -
+          `Weight` (number): The weight of the cart item.\n    - `Stock` (number):
+          The stock quantity of the cart item.\n    - `UserID` (number): The ID of
+          the user who owns the cart.\n    - `ItemID` (number): The ID of the item
+          in the cart.\n    - `Total` (number): The updated total value for the cart.\n\n###
+          Response Schema\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\":
+          {\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n
+          \       \"ID\": { \"type\": \"number\" },\n        \"Title\": { \"type\":
+          \"string\" },\n        \"Description\": { \"type\": \"string\" },\n        \"Category\":
+          { \"type\": \"string\" },\n        \"Price\": { \"type\": \"number\" },\n
+          \       \"Size\": { \"type\": \"array\" },\n        \"Weight\": { \"type\":
+          \"number\" },\n        \"Stock\": { \"type\": \"number\" },\n        \"UserID\":
+          { \"type\": \"number\" },\n        \"ItemID\": { \"type\": \"number\" },\n
+          \       \"Total\": { \"type\": \"number\" }\n      }\n    }\n  }\n}\n\n
+          ```"
+      response: []
+  - name: order
+    item:
+    - name: List Order
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: GET
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/orders?limit=1&page=2"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - orders
+          query:
+          - key: limit
+            value: '1'
+          - key: page
+            value: '2'
+        description: "# Get Orders\n\nThis endpoint retrieves a list of orders with
+          the ability to limit the number of results and paginate through the data.\n\n##
+          Request\n\n### Query Parameters\n\n- `limit` (integer, optional): Limit
+          the number of orders to be returned.\n- `page` (integer, optional): Specify
+          the page number for paginating through the results.\n    \n\nExample:\n\n```\nGET
+          {{baseUrl}}/api/orders?limit=1&page=2\n\n ```\n\n## Response\n\nUpon a successful
+          request, the server responds with a status code of 200 and a JSON object
+          containing the list of orders.\n\n### Response Body\n\n- `data` (array):
+          An array containing order objects with details such as ID, UserID, GrossAmount,
+          Status, TransactionDate, Items, OrderType, MidtransOrderID, MidtransStatus,
+          MidtransInvoice, CreatedAt, UpdatedAt, and DeletedAt.\n- `limit` (integer):
+          The limit specified for the request.\n- `page` (integer): The page number
+          for the current response.\n    \n\nExample:\n\n``` json\n{\n    \"data\":
+          [\n        {\n            \"ID\": 0,\n            \"UserID\": 0,\n            \"GrossAmount\":
+          0,\n            \"Status\": \"\",\n            \"TransactionDate\": \"\",\n
+          \           \"Items\": [\n                {\n                    \"ID\":
+          0,\n                    \"Title\": \"\",\n                    \"Description\":
+          \"\",\n                    \"Category\": \"\",\n                    \"Price\":
+          0,\n                    \"Size\": [0],\n                    \"Weight\":
+          0,\n                    \"Stock\": 0,\n                    \"Transactions\":
+          null,\n                    \"CreatedAt\": \"\",\n                    \"UpdatedAt\":
+          \"\",\n                    \"DeletedAt\": null\n                }\n            ],\n
+          \           \"OrderType\": \"\",\n            \"MidtransOrderID\": \"\",\n
+          \           \"MidtransStatus\": \"\",\n            \"MidtransInvoice\":
+          \"\",\n            \"CreatedAt\": \"\",\n            \"UpdatedAt\": \"\",\n
+          \           \"DeletedAt\": null\n        }\n    ],\n    \"limit\": 0,\n
+          \   \"page\": 0\n}\n\n ```"
+      response: []
+    - name: Detail Order
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: GET
+        header: []
+        url:
+          raw: "{{baseUrl}}/api/orders/3"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - orders
+          - '3'
+        description: "# Get Order Details\n\nThis endpoint retrieves the details of
+          a specific order by providing the order ID in the request URL.\n\n## Request\n\n###
+          Endpoint\n\n`GET /api/orders/3`\n\n### Response\n\n- Status: 202\n- Content-Type:
+          application/json\n    \n\n``` json\n{\n    \"data\": {\n        \"ID\":
+          0,\n        \"UserID\": 0,\n        \"GrossAmount\": 0,\n        \"Status\":
+          \"\",\n        \"TransactionDate\": \"\",\n        \"Items\": [\n            {\n
+          \               \"ID\": 0,\n                \"Title\": \"\",\n                \"Description\":
+          \"\",\n                \"Category\": \"\",\n                \"Price\": 0,\n
+          \               \"Size\": [0],\n                \"Weight\": 0,\n                \"Stock\":
+          0,\n                \"Transactions\": null,\n                \"CreatedAt\":
+          \"\",\n                \"UpdatedAt\": \"\",\n                \"DeletedAt\":
+          null\n            }\n        ],\n        \"OrderType\": \"\",\n        \"MidtransOrderID\":
+          \"\",\n        \"MidtransStatus\": \"\",\n        \"MidtransInvoice\": \"\",\n
+          \       \"CreatedAt\": \"\",\n        \"UpdatedAt\": \"\",\n        \"DeletedAt\":
+          null\n    }\n}\n\n ```\n\nThe response contains detailed information about
+          the requested order, including its ID, user ID, gross amount, status, transaction
+          date, items, order type, and other relevant details."
+      response: []
+    - name: Create Order Cart
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: POST
+        header: []
+        body:
+          mode: raw
+          raw: |-
+            {
+                "GrossAmount": 6000,
+                "Status": "paid",
+                "OrderType": "bank_transfer",
+                "Items": [
+                    {
+                        "ItemID":1,
+                        "Total": 5
+                    },
+                    {
+                        "ItemID":2,
+                        "Total": 4
+                    }
+                ]
+            }
+          options:
+            raw:
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/order-carts"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - order-carts
+        description: |-
+          ### Add Order to Cart
+
+          This endpoint allows you to add an order to the cart.
+
+          #### Request Body
+
+          - `GrossAmount` (number): The gross amount for the order.
+          - `Status` (string): The status of the order.
+          - `OrderType` (string): The type of the order.
+          - `Items` (array):
+              - `ItemID` (number): The ID of the item.
+              - `Total` (number): The total amount for the item.
+
+          #### Response
+
+          Upon successful execution, the server responds with a status code of 201 and a content type of text/plain, indicating that the order has been successfully created.
+      response: []
+    - name: Create Order
+      request:
+        auth:
+          type: bearer
+          bearer:
+          - key: token
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTk4Nzg4NTIsInJvbGUiOiJ1c2VyIiwidXNlcm5hbWUiOiJhZGl0eWF4eDIxIn0.uiaMvBZVj0Ckid-PaKI44sAsoW3fbTe20V-HsShCo-c
+            type: string
+        method: POST
+        header: []
+        body:
+          mode: raw
+          raw: |-
+            {
+                "GrossAmount": 6000,
+                "Total": 3,
+                "Status": "paid",
+                "OrderType": "bank_transfer",
+                "ItemID": 1
+            }
+          options:
+            raw:
+              language: json
+        url:
+          raw: "{{baseUrl}}/api/orders"
+          host:
+          - "{{baseUrl}}"
+          path:
+          - api
+          - orders
+        description: "### Add Order\n\nThis endpoint allows you to add a new order.\n\n####
+          Request Body\n\n- `GrossAmount` (number): The gross amount of the order.\n-
+          `Total` (number): The total amount of the order.\n- `Status` (string): The
+          status of the order.\n- `OrderType` (string): The type of the order.\n-
+          `ItemID` (number): The ID of the item.\n    \n\n#### Response\n\n- Status:
+          201\n- Content-Type: text/plain\n- Body: Created"
+      response: []
+event:
+- listen: prerequest
+  script:
+    type: text/javascript
+    packages: {}
+    exec:
+    - ''
+- listen: test
+  script:
+    type: text/javascript
+    packages: {}
+    exec:
+    - ''
+variable:
+- key: baseUrl
+  value: http://127.0.0.1:3000
