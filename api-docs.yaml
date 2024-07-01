@@ -46,7 +46,7 @@ item:
           payload in the raw request body with the keys \"username\", \"password\",
           and \"role\".\n\n### Request Body\n\n- `username` (string, required): The
           username of the new user.\n- `password` (string, required): The password
-          for the new user.\n- `role` (string, required): The role of the new user.\n
+          for the new user.\n- `role` (string, required): The role of the new user is (admin / user).\n
           \   \n\n### Response\n\nUpon successful registration, the endpoint returns
           a 201 status code with a JSON response containing the details of the newly
           registered user, including their ID, username, password, role, creation
