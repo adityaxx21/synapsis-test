@@ -2,7 +2,8 @@ package config
 
 import (
 	"synapsis-backend-test/internal/domain"
-
+	"github.com/midtrans/midtrans-go/example"
+	"os"
 	"fmt"
 	"log"
 
@@ -19,7 +20,12 @@ var Mid snap.Client
 
 
 func ConnectDB() {
-	dsn := "host=localhost user=postgres password=root dbname=synapsisDb port=5432 sslmode=disable TimeZone=Asia/Jakarta"
+	user := os.Getenv("POSTGRES_USER")
+	password := os.Getenv("POSTGRES_PASSWORD")
+	dbname := os.Getenv("POSTGRES_DB")
+	port := os.Getenv("POSTGRES_PORT")
+	dsn := fmt.Sprintf("host=postgres sslmode=enable user=%s password=%s dbname=%s port=%s TimeZone=Asia/Jakarta", user, password, dbname, port)
+	fmt.Println(dsn)
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -27,7 +33,6 @@ func ConnectDB() {
 	}
 	fmt.Println("Database connection successful")
 }
-
 
 func Migrate(db *gorm.DB) {
 	db.AutoMigrate(
@@ -40,5 +45,5 @@ func Migrate(db *gorm.DB) {
 }
 
 func InitializeSnapClient() {
-	Mid.New("SB-Mid-server-3CD8qhM1_29NjzaDByb_6FTs", midtrans.Sandbox)
+	Mid.New(example.SandboxServerKey1, midtrans.Sandbox)
 }
